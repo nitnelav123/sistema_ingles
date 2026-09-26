@@ -1,0 +1,919 @@
+/* =========================================================
+NEW WAYS - INSTITUTO DE INGLÉS
+========================================================= */
+
+/* ===== VARIABLES ===== */
+
+:root {
+--azul: #479f98;
+--azul-oscuro: #1e40af;
+--azul-claro: #eff6ff;
+
+--amarillo: #fbbf24;
+
+--blanco: #ffffff;
+--fondo: #f5f7fb;
+
+--texto: #1f2937;
+--texto-suave: #64748b;
+
+--oscuro: #111827;
+--oscuro-secundario: #1f2937;
+
+--borde: #e5e7eb;
+
+--sombra: 0 10px 30px rgba(15, 23, 42, 0.10);
+
+--transicion: 0.3s ease;
+
+}
+
+/* ===== RESET ===== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: 'Inter', Arial, sans-serif;
+background: var(--fondo);
+color: var(--texto);
+transition: background var(--transicion), color var(--transicion);
+}
+
+h1, h2, h3, h4, h5, h6,
+.header-left h1,
+.hero-button {
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+line-height: 1.7;
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+header {
+background: var(--blanco);
+padding: 12px 30px;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 2px 15px rgba(15, 23, 42, 0.08);
+transition: background var(--transicion), color var(--transicion);
+}
+
+.header-container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+max-width: 1200px;
+margin: auto;
+}
+
+.header-left {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.header-left h1 {
+color: var(--azul);
+font-size: 24px;
+}
+
+/* ===== LOGO ===== */
+
+.logo {
+width: 55px;
+height: auto;
+/* Quitamos el brillo blanco exagerado
+   que tenía el diseño anterior */
+filter: none;
+}
+
+/* =========================================================
+MENU
+========================================================= */
+
+.menu {
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.menu a {
+color: var(--texto);
+text-decoration: none;
+font-weight: 600;
+padding: 9px 14px;
+border-radius: 8px;
+transition: var(--transicion);
+}
+
+.menu a:hover {
+color: var(--azul);
+background: var(--azul-claro);
+}
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero {
+min-height: clamp(450px, 55vw, 750px);
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 70px 20px;
+color: var(--blanco);
+
+background-image:
+    linear-gradient(
+        rgba(15, 23, 42, 0.62),
+        rgba(15, 23, 42, 0.62)
+    ),
+    url("img/hero.jpg");
+
+background-size: cover;
+background-position: center 70%;
+background-repeat: no-repeat;
+}
+
+.hero-content {
+max-width: 780px;
+}
+
+.hero h1 {
+font-size: 48px;
+line-height: 1.15;
+margin-bottom: 20px;
+}
+
+.hero p {
+font-size: 20px;
+line-height: 1.6;
+margin-bottom: 32px;
+opacity: 0.92;
+}
+
+/* ===== BOTÓN DEL HERO ===== */
+
+.hero-button {
+display: inline-block;
+padding: 14px 30px;
+background: var(--azul);
+color: var(--blanco);
+text-decoration: none;
+border-radius: 30px;
+font-weight: 700;
+transition: var(--transicion);
+}
+
+.hero-button:hover {
+background: var(--azul-oscuro);
+transform: translateY(-3px);
+box-shadow:
+    0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* =========================================================
+CURSOS
+========================================================= */
+
+.cursos {
+background: var(--blanco);
+color: var(--texto);
+text-align: center;
+padding: 75px 20px;
+}
+
+.cursos h2 {
+color: var(--texto);
+font-size: 34px;
+margin-bottom: 10px;
+}
+
+.cursos > p {
+color: var(--texto-suave);
+margin-bottom: 40px;
+}
+
+/* ===== CONTENEDOR DE TARJETAS ===== */
+
+.cursos-container {
+display: flex;
+justify-content: center;
+gap: 25px;
+max-width: 1100px;
+margin: auto;
+}
+
+/* ===== TARJETA ===== */
+
+.curso {
+flex: 1;
+max-width: 320px;
+padding: 32px 25px;
+background: var(--blanco);
+border: 1px solid var(--borde);
+border-radius: 16px;
+box-shadow: var(--sombra);
+transition: var(--transicion);
+}
+
+.curso:hover {
+transform: translateY(-8px);
+border-color: var(--azul);
+box-shadow:
+    0 15px 35px rgba(37, 99, 235, 0.15);
+}
+
+.curso h3 {
+color: var(--azul);
+font-size: 22px;
+margin-bottom: 15px;
+}
+
+.curso p {
+color: var(--texto-suave);
+}
+
+/* =========================================================
+NOSOTROS
+========================================================= */
+
+.nosotros {
+background: var(--fondo);
+padding: 75px 20px;
+}
+
+.nosotros-content {
+max-width: 1100px;
+margin: auto;
+display: flex;
+align-items: center;
+gap: 60px;
+}
+
+/* ===== TEXTO ===== */
+
+.nosotros-texto {
+flex: 1;
+}
+
+.nosotros-texto h2 {
+color: var(--azul);
+font-size: 34px;
+margin-bottom: 20px;
+}
+
+.nosotros-texto p {
+color: var(--texto-suave);
+margin-bottom: 15px;
+}
+
+/* ===== INFORMACIÓN ===== */
+
+.nosotros-info {
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.nosotros-info > div {
+background: var(--blanco);
+padding: 22px;
+border-radius: 14px;
+border-left: 4px solid var(--azul);
+box-shadow: var(--sombra);
+transition: var(--transicion);
+}
+
+.nosotros-info > div:hover {
+transform: translateX(8px);
+}
+
+.nosotros-info h3 {
+color: var(--texto);
+margin-bottom: 8px;
+}
+
+.nosotros-info p {
+color: var(--texto-suave);
+}
+
+/* =========================================================
+CONTACTO
+========================================================= */
+
+.contacto {
+background: var(--oscuro);
+color: var(--blanco);
+text-align: center;
+padding: 75px 20px;
+}
+
+.contacto-content {
+max-width: 900px;
+margin: auto;
+}
+
+.contacto h2 {
+font-size: 34px;
+margin-bottom: 15px;
+}
+
+.contacto p {
+color: #cbd5e1;
+margin-bottom: 35px;
+}
+
+/* ===== OPCIONES DE CONTACTO ===== */
+
+.contacto-opciones {
+display: flex;
+justify-content: center;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+.contacto-opciones a {
+display: inline-block;
+padding: 14px 25px;
+background: var(--blanco);
+color: var(--oscuro);
+text-decoration: none;
+border-radius: 30px;
+font-weight: 700;
+transition: var(--transicion);
+}
+
+.contacto-opciones a:hover {
+background: var(--amarillo);
+transform: translateY(-5px);
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+footer {
+background: #0b1120;
+text-align: center;
+font-size: 13px;
+color: #cbd5e1;
+padding: 20px;
+margin: 0;
+}
+
+/* =========================================================
+INTERRUPTOR MODO OSCURO
+========================================================= */
+
+.toggle-container {
+display: flex;
+align-items: center;
+}
+
+#modoToggle {
+display: none;
+}
+
+.toggle {
+width: 58px;
+height: 26px;
+background: #cbd5e1;
+border-radius: 50px;
+position: relative;
+cursor: pointer;
+transition: var(--transicion);
+}
+
+/* ===== CÍRCULO ===== */
+
+.toggle::before {
+content: "\f185";
+font-family: FontAwesome;
+position: absolute;
+width: 22px;
+height: 22px;
+background: var(--blanco);
+color: #f59e0b;
+border-radius: 50%;
+top: 2px;
+left: 2px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+transition: var(--transicion);
+}
+
+/* ===== INTERRUPTOR ACTIVADO ===== */
+
+#modoToggle:checked + .toggle {
+background: #334155;
+}
+
+#modoToggle:checked + .toggle::before {
+content: "\f186";
+font-family: FontAwesome;
+color: var(--amarillo);
+transform: translateX(32px);
+}
+
+/* =========================================================
+MODO OSCURO
+========================================================= */
+
+body.modo-claro {
+background: #0f172a;
+color: #e5e7eb;
+}
+
+/* ===== HEADER ===== */
+
+body.modo-claro header {
+background: #111827;
+}
+
+body.modo-claro .header-left h1 {
+color: #2aa89e;
+}
+
+/* ===== MENU ===== */
+
+body.modo-claro .menu a {
+color: #e5e7eb;
+}
+
+body.modo-claro .menu a:hover {
+color: #60a5fa;
+background: #1e293b;
+}
+
+/* ===== CURSOS ===== */
+
+body.modo-claro .cursos {
+background: #111827;
+color: #e5e7eb;
+}
+
+body.modo-claro .cursos h2 {
+color: #e5e7eb;
+}
+
+body.modo-claro .cursos > p {
+color: #cbd5e1;
+}
+
+body.modo-claro .curso {
+background: #1e293b;
+border-color: #334155;
+}
+
+body.modo-claro .curso p {
+color: #cbd5e1;
+}
+
+/* ===== NOSOTROS ===== */
+
+body.modo-claro .nosotros {
+background: #0f172a;
+}
+
+body.modo-claro .nosotros-texto h2 {
+color: #2aa89e;
+}
+
+body.modo-claro .nosotros-texto p {
+color: #cbd5e1;
+}
+
+body.modo-claro .nosotros-info > div {
+background: #1e293b;
+}
+
+body.modo-claro .nosotros-info h3 {
+color: #e5e7eb;
+}
+
+body.modo-claro .nosotros-info p {
+color: #cbd5e1;
+}
+
+/* =========================================================
+RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+.header-container {
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 38px;
+}
+
+.cursos-container {
+    flex-wrap: wrap;
+}
+
+.curso {
+    min-width: 260px;
+}
+
+.nosotros-content {
+    flex-direction: column;
+    gap: 35px;
+}
+
+
+}
+
+/* =========================================================
+RESPONSIVE - CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+header {
+    padding: 10px 15px;
+}
+
+.header-left h1 {
+    font-size: 20px;
+}
+
+.logo {
+    width: 45px;
+}
+
+.menu {
+    gap: 2px;
+}
+
+.menu a {
+    padding: 7px 8px;
+
+    font-size: 14px;
+}
+
+/* ===== HERO ===== */
+
+.hero {
+    min-height: 450px;
+    padding: 50px 15px;
+}
+
+.hero h1 {
+    font-size: 30px;
+}
+
+.hero p {
+    font-size: 17px;
+}
+
+
+/* ===== SECCIONES ===== */
+
+.cursos,
+.nosotros,
+.contacto {
+    padding: 55px 15px;
+}
+
+.cursos h2,
+.nosotros-texto h2,
+.contacto h2 {
+    font-size: 28px;
+}
+
+
+/* ===== TARJETAS ===== */
+
+.curso {
+    min-width: 100%;
+}
+
+
+/* ===== CONTACTO ===== */
+
+.contacto-opciones {
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.contacto-opciones a {
+    width: 90%;
+
+    max-width: 300px;
+}
+
+}
+
+/* =========================================================
+FORMULARIO DE REGISTRO
+========================================================= */
+
+.form-section {
+min-height: calc(100vh - 80px);
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 50px 20px;
+background: var(--fondo);
+}
+
+.form-card {
+width: 100%;
+max-width: 460px;
+background: var(--blanco);
+border-radius: 20px;
+box-shadow: var(--sombra);
+padding: 40px 35px;
+transition: var(--transicion);
+}
+
+.form-card h2 {
+color: var(--azul);
+font-size: 26px;
+margin-bottom: 6px;
+text-align: center;
+}
+
+.form-card > p {
+color: var(--texto-suave);
+text-align: center;
+margin-bottom: 28px;
+font-size: 14px;
+}
+
+.form-card form {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.form-row {
+display: flex;
+gap: 14px;
+}
+
+.form-card input {
+width: 100%;
+padding: 13px 16px;
+border: 1px solid var(--borde);
+border-radius: 10px;
+font-family: 'Inter', sans-serif;
+font-size: 15px;
+color: var(--texto);
+background: var(--fondo);
+transition: var(--transicion);
+}
+
+.form-card input::placeholder {
+color: var(--texto-suave);
+}
+
+.form-card input:focus {
+outline: none;
+border-color: var(--azul);
+background: var(--blanco);
+box-shadow: 0 0 0 3px rgba(71, 159, 152, 0.15);
+}
+
+.form-date-label {
+font-size: 13px;
+color: var(--texto-suave);
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.form-card button {
+margin-top: 8px;
+border: none;
+cursor: pointer;
+font-size: 16px;
+font-family: inherit;
+}
+
+@media (max-width: 500px) {
+.form-row {
+    flex-direction: column;
+    gap: 16px;
+}
+}
+
+/* ===== LOGIN ===== */
+
+.form-switch {
+text-align: center;
+margin-top: 20px;
+font-size: 14px;
+color: var(--texto-suave);
+}
+
+.form-switch a {
+color: var(--azul);
+font-weight: 600;
+text-decoration: none;
+}
+
+.form-switch a:hover {
+text-decoration: underline;
+}
+
+body.modo-claro .form-switch {
+color: #cbd5e1;
+}
+
+
+/* ===== MODO OSCURO ===== */
+
+body.modo-claro .form-card {
+background: #1e293b;
+}
+
+body.modo-claro .form-card > p {
+color: #cbd5e1;
+}
+
+body.modo-claro .form-card input {
+background: #0f172a;
+border-color: #334155;
+color: #e5e7eb;
+}
+
+body.modo-claro .form-card input::placeholder {
+color: #94a3b8;
+}
+
+body.modo-claro .form-date-label {
+color: #cbd5e1;
+}
+
+/* =========================================================
+ADMIN & TABLAS
+========================================================= */
+
+.form-section {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background: var(--fondo);
+}
+
+/* Redefinimos la tarjeta específicamente para tablas de administración */
+.form-card.admin-table-card {
+    width: 100% !important;
+    max-width: 1200px !important; /* Ancho cómodo para la pantalla */
+    background: var(--blanco);
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+    padding: 35px 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Cabecera mejor organizada: título a la izquierda, botón a la derecha */
+.admin-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.admin-card-header h2 {
+    color: var(--azul);
+    font-size: 28px;
+    margin: 0;
+}
+
+/* Estilos de la tabla */
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Permite scroll horizontal en pantallas muy chicas */
+    margin-top: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--borde);
+    white-space: nowrap; /* Evita que los textos largos o columnas se rompan */
+}
+
+.admin-table th {
+    color: var(--texto-suave);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    background-color: #f8fafc;
+}
+
+.admin-table a {
+    color: var(--azul);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.admin-table a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .menu a {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+SWEET ALERT
+========================================================= */
+
+button.btn-accion {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    font: inherit !important;
+    color:#479f98 !important; /* Ajusta este color al de tus enlaces (ej. verde/azul) */
+    cursor: pointer !important;
+}
+
+button.btn-accion:hover {
+    opacity: 0.8;
+}
+
+/* Color opcional si querés que tenga el azul/verde de Editar */
+.btn-accion {
+    color: #479f98; /* Cambiá este color por la variable de tu tema, ej: var(--azul) */
+}
+
+.btn-accion:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.btn-link-eliminar {
+    background:none; 
+    border:none; 
+    outline: none;
+    color:#dc2626; 
+    cursor:pointer; 
+    font-size:inherit; 
+    padding:0; 
+    margin: 0;
+}
+
+.btn-link-eliminar:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}

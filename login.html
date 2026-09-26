@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>New ways - Instituto de Inglés</title>
+
+     <script>
+        if (localStorage.getItem("modo") === "claro") {
+            document.documentElement.classList.add("modo-claro-pre");
+        }
+    </script>
+
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-container">
+
+        <div class="header-left">
+            <img src="img/Logo.png" class="logo">
+            <h1>New ways</h1>
+        </div>
+
+        <nav class="menu">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#cursos">Cursos</a>
+            <a href="index.html#nosotros">Nosotros</a>
+            <a href="index.html#contacto">Contacto</a>
+            <a href="form.html">Registrarse</a>
+        
+            <div class="toggle-container">
+                <input type="checkbox" id="modoToggle">
+                <label for="modoToggle" class="toggle"></label>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<section class="form-section">
+    <div class="form-card">
+        <h2>Ingresá con tu cuenta</h2>
+
+
+        <form action="login.php" method="POST">
+
+            <input type="text" name="identificador" placeholder="Email o DNI" required>
+
+            <input type="password" name="password" placeholder="Contraseña" required>
+
+            <button type="submit" class="hero-button">Ingresar</button>
+
+        </form>
+
+        <p class="form-switch">
+            ¿No tenés cuenta? <a href="form.html">Registrate</a>
+        </p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 New Ways English Institute - Página institucional</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

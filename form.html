@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>New ways - Instituto de Inglés</title>
+
+     <script>
+        if (localStorage.getItem("modo") === "claro") {
+            document.documentElement.classList.add("modo-claro-pre");
+        }
+    </script>
+
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-container">
+
+        <div class="header-left">
+            <img src="img/Logo.png" class="logo">
+            <h1>New ways</h1>
+        </div>
+
+        <nav class="menu">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#cursos">Cursos</a>
+            <a href="index.html#nosotros">Nosotros</a>
+            <a href="index.html#contacto">Contacto</a>
+            <a href="form.html">Registrarse</a>
+        
+            <div class="toggle-container">
+                <input type="checkbox" id="modoToggle">
+                <label for="modoToggle" class="toggle"></label>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+
+<section class="form-section">
+    <div class="form-card">
+        <h2>Sumate a New Ways</h2>
+        <p>Completá tus datos para registrarte</p>
+
+        <form action="guardar.php" method="POST">
+
+            <div class="form-row">
+                <input type="text" name="nombre_persona" placeholder="Nombre" required>
+                <input type="text" name="apellido_persona" placeholder="Apellido" required>
+            </div>
+
+            <div class="form-row">
+                <input type="text" inputmode="numeric" pattern="[0-9]{7,8}" name="DNI_persona" placeholder="DNI" required>
+                <input type="tel" name="telefono_persona" placeholder="Teléfono" required>
+            </div>
+
+            <input type="email" name="email_persona" placeholder="Email" required>
+
+            <div class="form-row">
+                <input type="password" name="password_persona" placeholder="Contraseña" required minlength="6">
+                <input type="password" name="password_confirmar" placeholder="Repetir contraseña" required minlength="6">
+            </div>
+
+            <label class="form-date-label">
+                Fecha de nacimiento
+                <input type="date" name="fechaNac_persona" min="1920-01-01" max="2020-12-31" required>
+            </label>
+
+            <button type="submit" class="hero-button">Registrarme</button>
+
+            <p class="form-switch">
+                ¿Ya tenés una cuenta? <a href="login.html">Iniciá sesión</a>
+            </p>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 New Ways English Institute - Página institucional</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

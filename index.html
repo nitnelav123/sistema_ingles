@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>New ways - Instituto de Inglés</title>
+
+     <script>
+        if (localStorage.getItem("modo") === "claro") {
+            document.documentElement.classList.add("modo-claro-pre");
+        }
+    </script>
+
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="header-container">
+
+    <div class="header-left">
+      <img src="img/Logo.png" class="logo">
+      <h1>New ways</h1>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="#cursos">Cursos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="form.html">Registrarse</a>
+        
+        <div class="toggle-container">
+            <input type="checkbox" id="modoToggle">
+            <label for="modoToggle" class="toggle"></label>
+        </div>
+    </nav>
+
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+    <div>
+            <h1>Una nueva forma de aprender inglés</h1>
+  
+            <p>
+                Clases de inglés para todas las edades.
+                Aprendé, practicá y desarrollá tus habilidades.
+            </p>
+
+            <a href="#cursos" class="hero_button">Ver nuestros cursos</a>
+    </div>
+</section>
+
+<section id="cursos" class="cursos">
+    <h2>Nuestros cursos</h2>
+
+    <p>
+        Encontrá el curso que mejor se adapte a vos.
+    </p>
+
+    <div class="cursos-container">
+        <article class="curso">
+            <h3>Inglés para niños</h3>
+            <p>
+                Un espacio pensado para que los más chicos
+                aprendan inglés de forma divertida.
+            </p>
+        </article>
+
+        <article class="curso">
+            <h3>Inglés para jóvenes</h3>
+            <p>
+                Desarrollá tus habilidades y preparate
+                para nuevos desafíos.
+            </p>
+        </article>
+
+        <article class="curso">
+            <h3>Inglés para adultos</h3>
+            <p>
+                Mejorá tu inglés para estudiar, trabajar
+                o comunicarte.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section id="nosotros" class="nosotros">
+    <div class="nosotros-content">
+
+        <div class="nosotros-texto">
+            <h2>¿Quiénes somos?</h2>
+
+            <p>
+                En New Ways creemos que aprender inglés
+                puede ser una experiencia dinámica, práctica
+                y adaptada a cada estudiante.
+            </p>
+
+            <p>
+                Nuestro objetivo es brindar las herramientas
+                necesarias para que nuestros alumnos puedan
+                comunicarse con mayor confianza y desarrollar
+                sus habilidades en el idioma.
+            </p>
+        </div>
+
+        <div class="nosotros-info">
+            <div>
+                <h3>Aprendizaje</h3>
+                <p>Clases pensadas para diferentes niveles.</p>
+            </div>
+
+            <div>
+                <h3>Profesores</h3>
+                <p>Acompañamiento durante todo el proceso.</p>
+            </div>
+
+            <div>
+                <h3>Inglés para la vida</h3>
+                <p>Práctica enfocada en situaciones reales.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="contacto" class="contacto">
+    <div class="contacto-content">
+
+        <h2>Contactanos</h2>
+
+        <p>
+            ¿Tenés alguna consulta sobre nuestros cursos?
+            Estamos para ayudarte.
+        </p>
+
+        <div class="contacto-opciones">
+
+            <a href="https://wa.me/5493446363061" target="_blank">
+                📱 WhatsApp
+            </a>
+
+            <a href="mailto:info@newways.com">
+                ✉️ Email
+            </a>
+
+            <a href="https://www.instagram.com/newwaysingles?igsi=ZXQ5dHpyY3lpdjdw" target="_blank">
+                📷 Instagram
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<footer>
+    <p>© 2026 New Ways English Institute - Página institucional</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
