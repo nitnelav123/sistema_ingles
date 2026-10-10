@@ -115,38 +115,78 @@ function confirmarEliminacionGenerica(id, detalle, urlPhp, nombreEntidad = 'regi
 }
 
 // Función para interceptar envíos de formularios mediante AJAX
-function manejarEnvioFormulario(idFormulario, urlRedireccion, mensajeExito = "Los cambios se guardaron correctamente") {
+function manejarEnvioFormulario(idFormulario, urlRedireccion, mensajeExito = "Los cambios se guardaron correctamente", pregunta = null) {
     const inicializar = () => {
         const form = document.getElementById(idFormulario);
         if (!form) return;
 
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(form);
-
+        const enviar = () => {
             fetch(form.action, {
                 method: 'POST',
-                body: formData
+                body: new FormData(form)
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    Swal.fire({
-                        title: '¡Guardado!',
-                        text: mensajeExito,
-                        icon: 'success',
-                        timer: 1500,
-                        showConfirmButton: false
-                    }).then(() => {
-                        window.location.href = urlRedireccion;
-                    });
+                    const redireccionFinal = data.redirect || urlRedireccion;
+                    
+                    // Si viene desde login, directamente redirigimos o mostramos confirmación
+                    if (redireccionFinal && idFormulario === 'formLogin') {
+                        window.location.href = redireccionFinal;
+                    } else {
+                        Swal.fire({
+                            title: '¡Guardado!',
+                            text: mensajeExito,
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+                            if (redireccionFinal) {
+                                window.location.href = redireccionFinal;
+                            }
+                        });
+                    }
                 } else {
-                    Swal.fire('Error', data.message || 'No se pudieron guardar los cambios', 'error');
+                    // SweetAlert para errores / usuario inactivo / datos incorrectos
+                    Swal.fire({
+                        title: data.title || 'Atención',
+                        text: data.message || 'Contraseña o Email incorrectos.',
+                        icon: data.icon || 'error',
+                        confirmButtonText: 'Volver',
+                        confirmButtonColor: '#3085d6'
+                    });
                 }
             })
             .catch(() => {
-                Swal.fire('Error', 'Ocurrió un error al procesar el formulario.', 'error');
+                Swal.fire({
+                    title: 'Error de conexión',
+                    text: 'Ocurrió un error al procesar la solicitud.',
+                    icon: 'error',
+                    confirmButtonText: 'Volver',
+                    confirmButtonColor: '#3085d6'
+                });
+            });
+        };
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!pregunta) {
+                enviar();
+                return;
+            }
+
+            Swal.fire({
+                title: pregunta,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, continuar',
+                cancelButtonText: 'Volver',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    enviar();
+                }
             });
         });
     };
@@ -158,4 +198,62 @@ function manejarEnvioFormulario(idFormulario, urlRedireccion, mensajeExito = "Lo
     }
 }
 
+// Cancelar o reactivar una inscripción
+function confirmarAccionInscripcion(id, detalle, accion) {
+    const esCancelar = accion === 'cancelar';
+    const urlPHP = esCancelar ? 'admin-cancelar-inscripcion.php' : 'admin-reactivar-inscripcion.php';
 
+    Swal.fire({
+        title: esCancelar ? '¿Cancelar la inscripción?' : '¿Reactivar la inscripción?',
+        text: detalle,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: esCancelar ? '#dc2626' : '#479f98',
+        cancelButtonColor: '#64748b',
+        confirmButtonText: esCancelar ? 'Sí, cancelar' : 'Sí, reactivar',
+        cancelButtonText: 'Volver',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`${urlPHP}?id=${encodeURIComponent(id)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: '¡Listo!',
+                            text: data.message,
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire('Error', data.message || 'No se pudo realizar la acción.', 'error');
+                    }
+                })
+                .catch(() => Swal.fire('Error', 'Error de conexión con el servidor.', 'error'));
+        }
+    });
+}
+
+// Conexión automática entre el HTML y las funciones de arriba
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Botones de inscripciones (Cancelar / Reactivar)
+    document.querySelectorAll('.btn-inscripcion').forEach(function (boton) {
+        boton.addEventListener('click', function () {
+            confirmarAccionInscripcion(boton.dataset.id, boton.dataset.detalle, boton.dataset.accion);
+        });
+    });
+
+    // Formularios por AJAX: <form data-ajax data-pregunta="..." data-exito="..." data-redireccion="...">
+    document.querySelectorAll('form[data-ajax]').forEach(function (form) {
+        manejarEnvioFormulario(
+            form.id,
+            form.dataset.redireccion || null,
+            form.dataset.exito || undefined,
+            form.dataset.pregunta || null
+        );
+    });
+});

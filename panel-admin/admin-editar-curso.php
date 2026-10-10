@@ -34,12 +34,14 @@ if (!$datos) { die("Curso no encontrado."); }
             <img src="../img/Logo.png" class="logo">
             <h1>New ways</h1>
         </div>
+        
         <nav class="menu">
             <a href="panel-admin.php">Dashboard</a>
             <a href="admin-alumnos.php">Alumnos</a>
             <a href="admin-profesores.php">Profesores</a>
             <a href="admin-cursos.php">Cursos</a>
             <a href="admin-horarios.php">Horarios</a>
+            <a href="admin-inscripciones.php">Inscripciones</a>
             <a href="../logout.php">Cerrar sesión</a>
         </nav>
 

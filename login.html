@@ -6,7 +6,7 @@
     
     <title>New ways - Instituto de Inglés</title>
 
-     <script>
+    <script>
         if (localStorage.getItem("modo") === "claro") {
             document.documentElement.classList.add("modo-claro-pre");
         }
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 
 <body>
@@ -52,8 +52,8 @@
     <div class="form-card">
         <h2>Ingresá con tu cuenta</h2>
 
-
-        <form action="login.php" method="POST">
+        <!-- Agregamos id="formLogin" y el atributo data-ajax -->
+        <form id="formLogin" action="login.php" method="POST" data-ajax>
 
             <input type="text" name="identificador" placeholder="Email o DNI" required>
 
@@ -73,6 +73,8 @@
     <p>© 2026 New Ways English Institute - Página institucional</p>
 </footer>
 
-<script src="script.js"></script>
+<!-- CDN de SweetAlert2 importado antes de script.js -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="script.js?v=1.2"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@
     $datos = mysqli_stmt_get_result($sentencia_perfil)->fetch_assoc();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -42,8 +43,8 @@
         </nav>
 
         <div class="toggle-container">
-                <input type="checkbox" id="modoToggle">
-                <label for="modoToggle" class="toggle"></label>
+            <input type="checkbox" id="modoToggle">
+            <label for="modoToggle" class="toggle"></label>
         </div>
     </div>
 </header>
@@ -52,8 +53,11 @@
     <div class="form-card">
         <h2>Mi perfil</h2>
 
-        <form action="../modificar.php" method="POST">
-
+        <form id="form-perfil" action="../modificar.php" method="POST"
+            data-ajax
+            data-pregunta="¿Guardar los cambios?"
+            data-exito="Datos actualizados correctamente">
+            
             <div class="form-row">
                 <input type="text" name="nombre_persona" value="<?= htmlspecialchars($datos['nombre_persona']) ?>" required>
                 <input type="text" name="apellido_persona" value="<?= htmlspecialchars($datos['apellido_persona']) ?>" required>
@@ -80,6 +84,7 @@
 </section>
 
 
-<script src="../script.js"></script>
+<script src="../script.js?v=1.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

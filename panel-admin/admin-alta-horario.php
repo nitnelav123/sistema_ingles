@@ -67,6 +67,7 @@ $profesores = mysqli_query($conexion, "
             <a href="admin-profesores.php">Profesores</a>
             <a href="admin-cursos.php">Cursos</a>
             <a href="admin-horarios.php">Horarios</a>
+            <a href="admin-inscripciones.php">Inscripciones</a>
             <a href="../logout.php">Cerrar sesión</a>
         </nav>
 

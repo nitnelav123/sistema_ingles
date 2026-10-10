@@ -7,7 +7,7 @@ if (!isset($_SESSION["dni"]) || $_SESSION["rol"] !== "admin") {
     exit;
 }
 
-$sql = "SELECT p.DNI_persona, p.nombre_persona, p.apellido_persona, p.email_persona, p.activo,
+$sql = "SELECT p.DNI_persona, p.nombre_persona, p.apellido_persona, p.telefono_persona, p.email_persona, p.fechaNac_persona, p.activo,
                pr.disponibilidad, pr.cargaHoraria
         FROM Persona p
         JOIN Profesores pr ON pr.DNI_persona = p.DNI_persona
@@ -44,6 +44,7 @@ $resultado = mysqli_query($conexion, $sql);
             <a href="admin-profesores.php">Profesores</a>
             <a href="admin-cursos.php">Cursos</a>
             <a href="admin-horarios.php">Horarios</a>
+            <a href="admin-inscripciones.php">Inscripciones</a>
             <a href="../logout.php">Cerrar sesión</a>
         </nav>
 
@@ -74,7 +75,9 @@ $resultado = mysqli_query($conexion, $sql);
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>DNI</th>
+                        <th>Telefono</th>
                         <th>Email</th>
+                        <th>Fecha de nacimiento</th>
                         <th>Disponibilidad</th>
                         <th>Carga horaria</th>
                         <th>Estado</th>
@@ -88,7 +91,9 @@ $resultado = mysqli_query($conexion, $sql);
                         <td><?= htmlspecialchars($fila["nombre_persona"]) ?></td>
                         <td><?= htmlspecialchars($fila["apellido_persona"]) ?></td>
                         <td><?= htmlspecialchars($fila["DNI_persona"]) ?></td>
+                        <td><?= htmlspecialchars($fila["telefono_persona"]) ?></td>
                         <td><?= htmlspecialchars($fila["email_persona"]) ?></td>
+                        <td><?= htmlspecialchars($fila["fechaNac_persona"]) ?></td>
                         <td><?= htmlspecialchars($fila["disponibilidad"] ?? "-") ?></td>
                         <td><?= htmlspecialchars($fila["cargaHoraria"] ?? "-") ?></td>
                         <td><?= $fila["activo"] ? "Activo" : "Inactivo" ?></td>

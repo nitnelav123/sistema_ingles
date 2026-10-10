@@ -1,17 +1,31 @@
 <?php
 session_start();
 
+// Indicamos que la respuesta será en formato JSON
+header('Content-Type: application/json; charset=utf-8');
+
 $conexion = require("includes/conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    die("Acceso no válido");
+    echo json_encode([
+        'success' => false,
+        'title'   => 'Error',
+        'message' => 'Acceso no válido.',
+        'icon'    => 'error'
+    ]);
+    exit;
 }
 
 $identificador = trim($_POST["identificador"] ?? "");
 $password      = $_POST["password"] ?? "";
 
 if ($identificador === "" || $password === "") {
-    echo "<p>Completá ambos campos.</p>";
+    echo json_encode([
+        'success' => false,
+        'title'   => 'Campos incompletos',
+        'message' => 'Por favor, completá ambos campos.',
+        'icon'    => 'warning'
+    ]);
     exit;
 }
 
@@ -26,32 +40,50 @@ mysqli_stmt_execute($sentencia);
 $resultado = mysqli_stmt_get_result($sentencia);
 $persona   = mysqli_fetch_assoc($resultado);
 
+// 1. Verificación de credenciales (DNI/email o contraseña)
 if (!$persona || !password_verify($password, $persona["password_persona"])) {
-    echo "<h2>❌ DNI/email o contraseña incorrectos</h2>";
-    echo "<a href='login.html'>Volver a intentar</a>";
+    echo json_encode([
+        'success' => false,
+        'title'   => 'Datos incorrectos',
+        'message' => 'Contraseña o Email/DNI incorrectos.',
+        'icon'    => 'error'
+    ]);
     exit;
 }
 
+// 2. Verificación de estado activo/inactivo
 if (!$persona["activo"]) {
-    echo "<h2>⚠️ Tu cuenta está inactiva</h2>";
-    echo "<p>Contactate con el instituto para reactivarla.</p>";
+    echo json_encode([
+        'success' => false,
+        'title'   => 'Cuenta inactiva',
+        'message' => 'Tu cuenta se encuentra inactiva. Contactate con el instituto para reactivarla.',
+        'icon'    => 'warning'
+    ]);
     exit;
 }
 
+// 3. Inicio de sesión y redirección según rol
 $_SESSION["dni"]    = $persona["DNI_persona"];
 $_SESSION["nombre"] = $persona["nombre_persona"];
 $_SESSION["rol"]    = $persona["rol_persona"];
 
+$redirectUrl = '';
+
 switch ($_SESSION["rol"]) {
     case 'admin':
-        header("Location: ../panel-admin/panel-admin.php");
+        $redirectUrl = 'panel-admin/panel-admin.php';
         break;
     case 'profesor':
-        header("Location: ../panel-profesor/panel-profesor.php");
+        $redirectUrl = 'panel-profesor/panel-profesor.php';
         break;
     default:
-        header("Location: ../panel-alumno/panel-alumno.php");
+        $redirectUrl = 'panel-alumno/panel-alumno.php';
         break;
 }
+
+echo json_encode([
+    'success'  => true,
+    'redirect' => $redirectUrl
+]);
 exit;
 ?>

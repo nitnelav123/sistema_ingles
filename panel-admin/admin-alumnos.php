@@ -7,7 +7,7 @@ if (!isset($_SESSION["dni"]) || $_SESSION["rol"] !== "admin") {
     exit;
 }
 
-$sql = "SELECT DNI_persona, nombre_persona, apellido_persona, email_persona, activo
+$sql = "SELECT DNI_persona, nombre_persona, apellido_persona, telefono_persona, email_persona, fechaNac_persona, activo
         FROM Persona WHERE rol_persona = 'alumno' ORDER BY apellido_persona";
 $resultado = mysqli_query($conexion, $sql);
 ?>
@@ -36,6 +36,7 @@ $resultado = mysqli_query($conexion, $sql);
             <a href="admin-profesores.php">Profesores</a>
             <a href="admin-cursos.php">Cursos</a>
             <a href="admin-horarios.php">Horarios</a>
+            <a href="admin-inscripciones.php">Inscripciones</a>
             <a href="../logout.php">Cerrar sesión</a>
         </nav>
 
@@ -56,7 +57,9 @@ $resultado = mysqli_query($conexion, $sql);
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>DNI</th>
+                <th>Telefono</th>
                 <th>Email</th>
+                <th>Fecha de nacimiento</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>
@@ -65,7 +68,9 @@ $resultado = mysqli_query($conexion, $sql);
                 <td><?= htmlspecialchars($fila["nombre_persona"]) ?></td>
                 <td><?= htmlspecialchars($fila["apellido_persona"]) ?></td>
                 <td><?= htmlspecialchars($fila["DNI_persona"]) ?></td>
+                <td><?= htmlspecialchars($fila["telefono_persona"]) ?></td>
                 <td><?= htmlspecialchars($fila["email_persona"]) ?></td>
+                <td><?= htmlspecialchars($fila["fechaNac_persona"]) ?></td>
                 <td><?= $fila["activo"] ? "Activo" : "Inactivo" ?></td>
                 <td>
                     <a href="admin-editar-alumno.php?dni=<?= urlencode($fila["DNI_persona"]) ?>">Editar</a>

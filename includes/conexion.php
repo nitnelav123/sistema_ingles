@@ -12,5 +12,3 @@ if (!$conexion) {
 }
 
 return $conexion;
-
-?>
