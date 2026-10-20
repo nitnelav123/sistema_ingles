@@ -54,8 +54,19 @@ ALTER TABLE Profesores ADD FOREIGN KEY (ID_Nprofesor) REFERENCES NivelProfesor(I
 ALTER TABLE Cliente ADD COLUMN ID_nvCliente INT;
 ALTER TABLE Cliente ADD FOREIGN KEY (ID_nvCliente) REFERENCES NivelCliente(ID_nvCliente);
 
+ALTER TABLE Horarios ADD COLUMN cupo_maximo INT NOT NULL DEFAULT 20;
 
-SHOW CREATE TABLE Persona;
+
+RENAME TABLE Cliente TO Alumnos;
+ALTER TABLE Alumnos RENAME COLUMN ID_cliente TO ID_alumno;
+ALTER TABLE Inscripcion RENAME COLUMN ID_cliente TO ID_alumno;
+
+RENAME TABLE NivelCliente TO NivelAlumno;
+ALTER TABLE NivelAlumno RENAME COLUMN ID_nvCliente TO ID_Nalumno;
+ALTER TABLE NivelAlumno RENAME COLUMN nombre_nivelC TO nombre_nivelA;
+ALTER TABLE Alumnos RENAME COLUMN ID_nvCliente TO ID_Nalumno;
+
+SHOW CREATE TABLE Cliente;
 
 UPDATE Persona SET activo = true WHERE DNI_persona = '41234567';
 
@@ -116,5 +127,7 @@ CREATE TABLE Pagos (
 );
 
 UPDATE Persona SET rol_persona = 'admin' WHERE DNI_persona = '46393434';
+
+
 
 

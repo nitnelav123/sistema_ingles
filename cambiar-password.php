@@ -82,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <a href="panel-alumno/panel-alumno.php">Inicio</a>
             <a href="panel-alumno/mi-curso.php">Mi curso</a>
             <a href="panel-alumno/perfil.php">Perfil</a>
+            <a href="panel-alumno/cursos-disponibles.php">Cursos disponibles</a>
             <a href="logout.php">Cerrar sesión</a>
         </nav>
 

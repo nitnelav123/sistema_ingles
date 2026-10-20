@@ -1,10 +1,12 @@
 <?php
 
-$conexion = require("includes/conexion.php");
-
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    die("Acceso no válido");
+    header("Location: form.html");
+    exit;
 }
+
+header("Content-Type: application/json");
+$conexion = require("includes/conexion.php");
 
 $nombre             = trim($_POST["nombre_persona"]    ?? "");
 $apellido           = trim($_POST["apellido_persona"]  ?? "");
@@ -50,14 +52,11 @@ if ($fechaNac === "") {
 }
 
 if (count($errores) > 0) {
-    foreach ($errores as $error) {
-        echo "<p>" . htmlspecialchars($error) . "</p>";
-    }
+    echo json_encode(["success" => false, "message" => implode(" ", $errores)]);
     exit;
 }
 
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
 
 mysqli_begin_transaction($conexion);
 
@@ -69,28 +68,27 @@ try {
     mysqli_stmt_bind_param($sentencia, "sssssss", $dni, $nombre, $apellido, $email, $telefono, $fechaNac, $password_hash);
     mysqli_stmt_execute($sentencia);
 
-    $sql_cliente = "INSERT INTO Cliente (DNI_persona) VALUES (?)";
-    $sentencia_cliente = mysqli_prepare($conexion, $sql_cliente);
-    mysqli_stmt_bind_param($sentencia_cliente, "s", $dni);
-    mysqli_stmt_execute($sentencia_cliente);
+    $sql_alumnos = "INSERT INTO Alumnos (DNI_persona) VALUES (?)";
+    $sentencia_alumnos = mysqli_prepare($conexion, $sql_alumnos);
+    mysqli_stmt_bind_param($sentencia_alumnos, "s", $dni);
+    mysqli_stmt_execute($sentencia_alumnos);
 
     mysqli_commit($conexion);
 
-    echo "<h2>✅ Se ha registrado correctamente</h2>";
-    echo "<a href='login.html'>Volver al inicio</a>";
+    echo json_encode(["success" => true, "message" => "Te registraste correctamente."]);
 
 } catch (Exception $e) {
     mysqli_rollback($conexion);
-    $error_codigo = mysqli_errno($conexion);
 
-    if ($error_codigo == 1062) {
-        if (str_contains(mysqli_error($conexion), "PRIMARY")) {
-            echo "<h2>❌ Ya existe un usuario registrado con ese DNI</h2>";
+    if ($e->getCode() == 1062) {
+        if (str_contains($e->getMessage(), "PRIMARY")) {
+            $mensaje = "Ya existe un usuario registrado con ese DNI.";
         } else {
-            echo "<h2>❌ Ese correo ya ha sido registrado</h2>";
+            $mensaje = "Ese correo ya ha sido registrado.";
         }
     } else {
-        echo "<h2>❌ No se pudo guardar el registro</h2>";
+        $mensaje = "No se pudo guardar el registro.";
     }
+
+    echo json_encode(["success" => false, "message" => $mensaje]);
 }
-?>
